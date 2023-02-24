@@ -1,2 +1,3 @@
 # Xtree
-Simple program printing xmas tree written for training purposes in C
+Simple program printing out xmas tree to the console.
+Written in C, for training purposes, and for learning how to use GitHub.
