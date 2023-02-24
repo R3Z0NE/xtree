@@ -30,9 +30,9 @@ int main(int argc, char *argv[])
 
     // Execute until number of characters to write is greater or equal to provided width
     // Each iteration increase numbers of characters to print by 2
-    for (int i = width, chars_amount = 1; chars_amount <= width; chars_amount += 2)
+    for (int chars_amount = 1; chars_amount <= width; chars_amount += 2)
     {
-        for (int k = 0; k < ((i - chars_amount) / 2); k++) // Empty characters before
+        for (int k = 0; k < ((width - chars_amount) / 2); k++) // Empty characters before
         {
             printf(" ");
         }
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
             printf("%c", character);
         }
 
-        for (int k = 0; k < ((i - chars_amount) / 2); k++) // Empty characters after
+        for (int k = 0; k < ((width - chars_amount) / 2); k++) // Empty characters after
         {
             printf(" ");
         }
