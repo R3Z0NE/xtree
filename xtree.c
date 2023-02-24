@@ -6,8 +6,8 @@
 int main(int argc, char *argv[])
 {
     // If none CLI argument are privided, these variables remain untouched
-    long width = 10;      // Default width: 10
-    char character = 'x'; // default character: "x"
+    long width = 20;      // Default width
+    char character = 'x'; // default character
 
     if (argc >= 3) // If 'character' and 'width' CLI arguments are specified
     {
@@ -15,11 +15,11 @@ int main(int argc, char *argv[])
         char *p;
         width = strtol(argv[2], &p, 10); // Convert second CLI argument to long and store it as width
 
-        if (errno != 0 || *p != '\0' || width > 100 || width < 1)
+        if (errno != 0 || *p != '\0' || width > 200 || width < 1)
         {
             printf("Error processing your 2nd CLI argument (width of the tree) (int).\n");
-            printf("Enter value between 1-100.\n");
-            return 3;
+            printf("Enter value between 1-200.\n");
+            return 1;
         }
     }
 
@@ -48,4 +48,5 @@ int main(int argc, char *argv[])
         }
         printf("\n"); // End of the line
     }
+    return 0;
 }
