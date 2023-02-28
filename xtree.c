@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
     // Execute until number of characters to write is greater or equal to provided width
     // Each iteration increase numbers of characters to print by 2
-    for (int chars_amount = 1; chars_amount <= width; chars_amount += 2)
+    for (int chars_amount = 1; chars_amount <= width/1.5; chars_amount += 2) // First part
     {
         for (int k = 0; k < ((width - chars_amount) / 2); k++) // Empty characters before
         {
@@ -48,5 +48,46 @@ int main(int argc, char *argv[])
         }
         printf("\n"); // End of the line
     }
+
+    for (int chars_amount = width/3.5; chars_amount <= width; chars_amount += 2) // Same loop, second part of the tree
+    {
+        for (int k = 0; k < ((width - chars_amount) / 2); k++)
+        {
+            printf(" ");
+        }
+
+        for (int l = 0; l < chars_amount; l++)
+        {
+            printf("%c", character);
+        }
+
+        for (int k = 0; k < ((width - chars_amount) / 2); k++)
+        {
+            printf(" ");
+        }
+        printf("\n");
+    }
+
+    for (int trunk=width/10, chars_amount=trunk;trunk>0;trunk--)
+    {
+
+        for (int k = 0; k < (((width - chars_amount)/ 2)*0.9); k++) // Empty characters before
+        {
+            printf(" ");
+        }
+
+        for (int r=0; r < width/6;r++) // Trunk
+        {
+            printf("%c", character);
+        }
+
+        for (int k = 0; k < ((width - chars_amount) / 2); k++) // Empty characters after
+        {
+            printf(" ");
+        }
+
+        printf("\n");
+    }
+
     return 0;
 }
