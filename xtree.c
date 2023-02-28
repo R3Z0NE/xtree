@@ -5,45 +5,89 @@
 
 int main(int argc, char *argv[])
 {
+    // If none CLI argument are privided, these variables remain untouched
+    long width = 20;      // Default width
+    char character = 'x'; // default character
 
-    long width = 10; // Default width: 10
-    char base = argv[1][0]; // TODO: Default character
-    errno = 0;
-    char *p;
-
-    if (argc == 3)
+    if (argc >= 3) // If 'character' and 'width' CLI arguments are specified
     {
-        width = strtol(argv[2], &p, 10);
-    }
+        errno = 0;
+        char *p;
+        width = strtol(argv[2], &p, 10); // Convert second CLI argument to long and store it as width
 
-    if (errno != 0 || *p != '\0' || width > 100 || width < 1)
-    {
-        printf("Error processing your 2nd CLI argument (width of the tree) (int).\n");
-        printf("Enter value between 1-100.\n");
-        return 1;
-    }
-
-    else
-    {
-
-        // Execute until number of characters to write is greater or equal to provided width
-        for (int i = width, chars_amount = 1; chars_amount <= width; chars_amount += 2)
+        if (errno != 0 || *p != '\0' || width > 200 || width < 1)
         {
-            for (int k = 0; k < ((i - chars_amount) / 2); k++) // Empty characters before
-            {
-                printf(" ");
-            }
-
-            for (int l = 0; l < chars_amount; l++) // Print out provided character 'chars_amount' times.
-            {
-                printf("%c", base);
-            }
-
-            for (int k = 0; k < ((i - chars_amount) / 2); k++) // Empty characters after
-            {
-                printf(" ");
-            }
-            printf("\n"); // End of the line
+            printf("Error processing your 2nd CLI argument (width of the tree) (int).\n");
+            printf("Enter value between 1-200.\n");
+            return 1;
         }
     }
+
+    if (argc >= 2) // If at least 'character' CLI argument is specified
+    {
+        character = argv[1][0]; // Store first character of CLI argument as character to create tree with
+    }
+
+    // Execute until number of characters to write is greater or equal to provided width
+    // Each iteration increase numbers of characters to print by 2
+    for (int chars_amount = 1; chars_amount <= width/1.5; chars_amount += 2) // First part
+    {
+        for (int k = 0; k < ((width - chars_amount) / 2); k++) // Empty characters before
+        {
+            printf(" ");
+        }
+
+        for (int l = 0; l < chars_amount; l++) // Print out provided character 'chars_amount' times
+        {
+            printf("%c", character);
+        }
+
+        for (int k = 0; k < ((width - chars_amount) / 2); k++) // Empty characters after
+        {
+            printf(" ");
+        }
+        printf("\n"); // End of the line
+    }
+
+    for (int chars_amount = width/3.5; chars_amount <= width; chars_amount += 2) // Same loop, second part of the tree
+    {
+        for (int k = 0; k < ((width - chars_amount) / 2); k++)
+        {
+            printf(" ");
+        }
+
+        for (int l = 0; l < chars_amount; l++)
+        {
+            printf("%c", character);
+        }
+
+        for (int k = 0; k < ((width - chars_amount) / 2); k++)
+        {
+            printf(" ");
+        }
+        printf("\n");
+    }
+
+    for (int trunk=width/10, chars_amount=trunk;trunk>0;trunk--)
+    {
+
+        for (int k = 0; k < (((width - chars_amount)/ 2)*0.9); k++) // Empty characters before
+        {
+            printf(" ");
+        }
+
+        for (int r=0; r < width/6;r++) // Trunk
+        {
+            printf("%c", character);
+        }
+
+        for (int k = 0; k < ((width - chars_amount) / 2); k++) // Empty characters after
+        {
+            printf(" ");
+        }
+
+        printf("\n");
+    }
+
+    return 0;
 }
