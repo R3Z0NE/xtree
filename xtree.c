@@ -9,40 +9,38 @@ int main(int argc, char *argv[])
     long width = 21;      // Default width
     char character = 'x'; // default character
 
-    long width = 10; // Default width: 10
-    char base = argv[1][0]; // TODO: Default character
-    errno = 0;
-    char *p;
-
-    if (argc == 3)
+    if (argc >= 3) // If 'character' and 'width' CLI arguments are specified
     {
-        width = strtol(argv[2], &p, 10);
+        errno = 0;
+        char *p;
+        width = strtol(argv[2], &p, 10); // Convert second CLI argument to long and store it as width
+
+        if (errno != 0 || *p != '\0' || width > 200 || width < 1)
+        {
+            printf("Error processing your 2nd CLI argument (width of the tree) (int).\n");
+            printf("Enter value between 1-200.\n");
+            return 1;
+        }
     }
 
-    if (errno != 0 || *p != '\0' || width > 100 || width < 1)
+    if (argc >= 2) // If at least 'character' CLI argument is specified
     {
-        printf("Error processing your 2nd CLI argument (width of the tree) (int).\n");
-        printf("Enter value between 1-100.\n");
-        return 1;
+        character = argv[1][0]; // Store first character of CLI argument as character to create tree with
     }
 
     // Execute until number of characters to write is greater or equal to two-thirds of provided width
     // Each iteration increase numbers of characters to print by 2
     for (int chars_amount = 1; chars_amount <= width * 0.75; chars_amount += 2) // First part. Ends when width hits 75% of maximum value
     {
-
-        // Execute until number of characters to write is greater or equal to provided width
-        for (int i = width, chars_amount = 1; chars_amount <= width; chars_amount += 2)
+        for (int k = 0; k < ((width - chars_amount) / 2); k++) // Empty characters before
         {
-            for (int k = 0; k < ((i - chars_amount) / 2); k++) // Empty characters before
-            {
-                printf(" ");
-            }
+            printf(" ");
+        }
 
-            for (int l = 0; l < chars_amount; l++) // Print out provided character 'chars_amount' times.
-            {
-                printf("%c", base);
-            }
+        for (int l = 0; l < chars_amount; l++) // Print out provided character 'chars_amount' times
+        {
+            printf("%c", character);
+        }
 
         for (int k = 0; k < ((width - chars_amount) / 2); k++) // Empty characters after
         {
