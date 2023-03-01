@@ -6,7 +6,7 @@ Written in C, for training purposes, and for learning how to use GitHub.<br>
 User can provide two CLI arguments:<br>
 First one has to be character of which the tree will be made of. Some special characters will need "escaping", if that is the case read the "Limitations" section<br>
 Second argument has to be width of the tree. The value has to be integer from range 1-200. If you need more that that, read the "Limitations" section<br>
-If no arguments are specified, the program defaults the character to 'x' and the width to 20<br>
+If no arguments are specified, the program defaults the character to 'x' and the width to 21<br>
 
 Example usages:<br>
 "./xtree ^ 50"<br>
